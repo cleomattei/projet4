@@ -9,10 +9,6 @@ if(isset($_GET['p'])){ //par défaut la page d'accueil
     $p = 'home';
 }
 
-//Initialisation des objets
-
-$db = new App\Database('Livre_Jean_Forteroche');
-
 
 ob_start(); //met un content
 if($p ==='home'){ 
@@ -23,6 +19,9 @@ elseif ($p === 'my_Book'){
 }
 elseif($p === 'chapitre'){
     require '../pages/chapitre.php';
+}
+elseif($p === 'categorie'){
+    require '../categorie.php';
 }
 
 
