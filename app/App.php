@@ -1,38 +1,54 @@
 <?php
+/* __________________________________________________________________________________________________________________________________________________________________
 
-namespace App;
+LA CLASS POUR LA CONFIGURATION DU SITE = TITRE URL ...
+
+__________________________________________________________________________________________________________________________________________________________________ */
+use Core\Config;
+use Core\Database\MysqlDatabase;
+// _______________________________________________________________________________________________________________________________________________________________________
 
 class App {
     
-    const DB_NAME = 'Livre_Jean_Forteroche'; // on remet les constantes si elles changent un jour
-    const DB_USER = 'root';
-    const DB_PASS = 'root';
-    const DB_HOST = 'localhost';
+    public $title = "Jean Forteroche";
+    private $db_instance;
+    private static $_instance;
     
-    private static $title ='Jean Forteroche'; //titre du site change en fonction des chapitres + title default
-    private static $database;
-   
     
-    public static function getDb(){//initialise la connexion à la base de donnée
-        if (self::$database === null){ // on initialise que pour la première fois
-            self::$database = new Database(self::DB_NAME, self::DB_USER, self::DB_PASS, self::DB_HOST); 
-            // on sauvegarde l'objet pour ne pas l'initialiser tout le temps et on appelle les constantes
+    // fonction pour retourner l'instance
+    public static function getInstance(){
+        
+        if(is_null(self::$_instance)){ //on empêche de recréer toujours une nouvelle instance on garde la même
+            self::$_instance = new App();
         }
-        return self::$database;
+        return self::$_instance;
     }
     
-    public static function notFound(){
-    
-            header("HTTP/1.0 404 Not Found");
-            header('Location:index.php?p=404');
+    public static function load(){
+        session_start();
+        require ROOT .'/app/Autoloader.php';
+        App\Autoloader::register();
+        require ROOT . '/core/Autoloader.php';
+        Core\Autoloader::register();
     }
     
-    public static function getTitle(){ // return the title
-        return self::$title;
+    //elle créer un objet de la classe passée en parametre
+    public function getTable($name){
+        
+        $class_name = '\\App\\Table\\' . ucfirst($name) . 'Table';
+        return new $class_name($this->getDb());
     }
     
-    public static function setTitle($title){//prend en parametre le titre à passer
-        self::$title = $title . '|' . self::$title;
+    //charge la configuration de la base de donnée
+    public function getDb(){
+        
+        $config = Config::getInstance(ROOT. '/config/config.php');
+        if(is_null($this->db_instance)){ // si l'instance de la Bd n'est pas encore créée on l'instancie
+            //on instancie la classe base de donnée
+            $this->db_instance = new MysqlDatabase($config->get('db_name'), $config->get('db_user'), $config->get('db_pass'), $config->get('db_host'));
+        }
+        return $this->db_instance;
     }
+
 }
 

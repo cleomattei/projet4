@@ -1,10 +1,14 @@
 <?php
+/* __________________________________________________________________________________________________________________________________________________________________
 
-namespace App;
+SE CONNECTE A LA BASE DE DONNEE ET EXECUTE DES REQUETES
+
+__________________________________________________________________________________________________________________________________________________________________ */
+namespace Core\Database;
 
 use \PDO ; 
 
-class Database{
+class MysqlDatabase extends Database{
     
     private $db_name;
     private $db_user;
@@ -28,9 +32,14 @@ class Database{
         return $this->pdo;
     }
     
-    public function query($request, $class_name, $one = false){//requête pour récupérer les résultats
+    public function query($request, $class_name=NULL, $one = false){//requête pour récupérer les résultats
         $req = $this->getPDO()->query($request);
-        $req->setFetchMode(PDO::FETCH_CLASS, $class_name);
+        if($class_name === null){
+            $req->setFetchMode(PDO::FETCH_OBJ);
+        }else{
+            $req->setFetchMode(PDO::FETCH_CLASS, $class_name);
+        }
+        
               
         if($one){
             $datas =$req->fetch();

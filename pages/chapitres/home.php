@@ -2,7 +2,7 @@
 
 <div class="row">
     <div class="col-sm-8">
-        <?php foreach(App\Table\Chapitre::getLast() as $chapitre): ?> <!--va chercher tous les chapitres -->
+        <?php foreach(App::getInstance()->getTable('Chapitre')->last() as $chapitre): ?> <!--va chercher tous les chapitres -->
 
         <!-- plus besoin de se soucier d'aller chercher la base de donnée juste besoin de mettre App\App::getDb-->
 
@@ -16,7 +16,7 @@
     
      <div class="col-sm-4">
         <ul>
-        <?php foreach(\App\Table\Chapitre::getLast() as $chapitre): ?> 
+        <?php foreach(App::getInstance()->getTable('Chapitre')->last()  as $chapitre): ?> 
             <li><a href="<?= $chapitre->url; ?>"><?= $chapitre->titre; ?></a></li>
         <?php endforeach; ?>
         </ul>

@@ -4,7 +4,7 @@
 CHARGE AUTOMATIQUEMENT L'ENSEMBLE DES CLASSES DE TOUT LE PROJET
 
 __________________________________________________________________________________________________________________________________________________________________ */
-namespace App;
+namespace Core;
 
 /** 
 * Class Autoloader
