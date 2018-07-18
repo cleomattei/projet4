@@ -17,7 +17,7 @@ class Table {
             
             $parts = explode('\\', get_class($this)); //divise les \ en tableau
             $class_name = end($parts);
-            $this->table = strtolower(str_replace('Table','', $class_name));
+            $this->table = strtolower(str_replace('Table','', $class_name)) . 's';
         }
         
     }
@@ -26,7 +26,12 @@ class Table {
         return $this->db->query('SELECT * FROM chapitres');
     }
     
-    //
+    //création de la fonction find trouve un seul élément
+    public function find($id){
+        return $this->query("SELECT * FROM {$this->table} WHERE id =?", [$id], true);
+    }
+    
+    //appel a la base de donnée + query pour requete sql
     public function query ($request, $attributes = null, $one =false){
         if($attributes){
             return $this->db->prepare(

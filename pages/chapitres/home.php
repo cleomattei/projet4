@@ -16,8 +16,8 @@
     
      <div class="col-sm-4">
         <ul>
-        <?php foreach(App::getInstance()->getTable('Chapitre')->last()  as $chapitre): ?> 
-            <li><a href="<?= $chapitre->url; ?>"><?= $chapitre->titre; ?></a></li>
+        <?php foreach(App::getInstance()->getTable('Category')->last()  as $category): ?> 
+            <li><a href="<?= $category->url; ?>"><?= $category->titre; ?></a></li>
         <?php endforeach; ?>
         </ul>
     

@@ -1,23 +1,22 @@
 <?php
 // _______________________________________________________________________________________________________________________________________________________________________
 
-use App\App;
-use App\Table\Chapitre;
-use App\Table\Categorie;
+$app = App::getInstance();
 // _______________________________________________________________________________________________________________________________________________________________________
 
 //on récupère les catégories
-$categorie = Categorie::find($_GET['id']); 
+$categorie =$app->getTable('Category')->find($_GET['id']);
 if($categorie ===false){ //on prévoit les cas ou les catégories n'existent pas et on fait une redirection
-    App::notFound();
+    $app->notFound();
 }
 //on récupère les chapitres
-$articles = Chapitre::lastByCategory($_GET['id']);
+$articles = $app->getTable('Chapitre')->lastByCategory($_GET['id']);
 
-//liste des catégories
-$categories= Categorie::all();
+//récupère toutes les catégories
+$categories= $app->getTable('Category')->all();
 
 ?>
+
 <h1><?= $categorie->titre ?></h1>
 
 <div class="row">
@@ -36,8 +35,8 @@ $categories= Categorie::all();
     
      <div class="col-sm-4">
         <ul>
-        <?php foreach(\App\Table\Chapitre::getLast() as $chapitre): ?> 
-            <li><a href="<?= $chapitre->url; ?>"><?= $chapitre->titre; ?></a></li>
+        <?php foreach($categories as $category): ?> 
+            <li><a href="<?= $category->url; ?>"><?= $category->titre; ?></a></li>
         <?php endforeach; ?>
         </ul>
     
