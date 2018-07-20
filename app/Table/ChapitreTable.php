@@ -19,6 +19,7 @@ class ChapitreTable extends Table{
             SELECT chapitres.id, chapitres.titre, chapitres.contenu, chapitres.date_creation, categories.titre as categorie 
             FROM chapitres
             LEFT JOIN categories ON category_id = categories.id
+            WHERE categories.id = 1
             ORDER BY chapitres.date_creation ASC");
     }
     /** Récupère les derniers chapitres de la categories 
@@ -31,7 +32,7 @@ class ChapitreTable extends Table{
             FROM chapitres
             LEFT JOIN categories ON category_id = categories.id
             WHERE chapitres.category_id =?
-            ORDER BY chapitres.date_creation DESC", [$category_id]);
+            ORDER BY chapitres.date_creation ASC", [$category_id]);
     }
     
     /**
@@ -40,11 +41,27 @@ class ChapitreTable extends Table{
     * @return \App\Entity\ChapitreEntity
     */
     
-    public function find ($id){
+    public function findWidthCategory($id){
         return $this->query("
             SELECT chapitres.id, chapitres.titre, chapitres.contenu, chapitres.date_creation, categories.titre as categorie 
             FROM chapitres
             LEFT JOIN categories ON category_id = categories.id
             WHERE chapitres.id =?", [$id], true);
+    }
+    
+    // _______________________________________________________________________________________________________________________________________________________________________
+    /**
+    * Récupère LE dernier chapitre 
+    * @return array
+    */
+    
+    public function theLast (){
+        return $this->query("
+            SELECT chapitres.id, chapitres.titre, chapitres.contenu, chapitres.date_creation, categories.titre as categorie 
+            FROM chapitres
+            LEFT JOIN categories ON category_id = categories.id
+            ORDER BY chapitres.date_creation DESC
+            LIMIT 0,3"
+            );
     }
 }

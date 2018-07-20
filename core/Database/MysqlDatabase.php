@@ -34,7 +34,15 @@ class MysqlDatabase extends Database{
     
     public function query($request, $class_name=NULL, $one = false){//requête pour récupérer les résultats
         $req = $this->getPDO()->query($request);
-        if($class_name === null){
+         if(
+            strpos($request, 'UPDATE') === 0 ||
+            strpos($request, 'INSERT') === 0 ||
+            strpos($request, 'DELETE') === 0 
+        ){
+            return $req;
+        }
+        
+        if($class_name === null){ // condition : le class name peut être null
             $req->setFetchMode(PDO::FETCH_OBJ);
         }else{
             $req->setFetchMode(PDO::FETCH_CLASS, $class_name);
@@ -51,18 +59,35 @@ class MysqlDatabase extends Database{
         return $datas;
     }
     
-    public function prepare($request, $attributes, $class_name, $one = false){//on rajoute le dernier paramètre pour ne voir qu'un seul élément du tableau
+    public function prepare($request, $attributes, $class_name=NULL, $one = false){//on rajoute le dernier paramètre pour ne voir qu'un seul élément du tableau, par defaut le class name est null
         $req =$this->getPDO()->prepare($request);
-        $req->execute($attributes);
-        $req->setFetchMode(PDO::FETCH_CLASS, $class_name);
+        $result = $req->execute($attributes);
+        if(
+            strpos($request, 'UPDATE') === 0 ||
+            strpos($request, 'INSERT') === 0 ||
+            strpos($request, 'DELETE') === 0 
+        ){
+            return $result;
+        }
+        
+        if($class_name === null){ // condition : le class name peut être null
+            $req->setFetchMode(PDO::FETCH_OBJ);
+        }else{
+            $req->setFetchMode(PDO::FETCH_CLASS, $class_name);
+        }
         
         if($one){
             $datas =$req->fetch();
         }
         else{
-              $datas = $req->fetchAll();
+            $datas = $req->fetchAll();
         }
       
         return $datas;
+    }
+    
+    // retourne l'id du dernier enregistrement
+    public function lastInsertId(){
+        return $this->getPDO()->getPDO()->lastInsertId();
     }
 }

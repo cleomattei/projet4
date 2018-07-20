@@ -9,7 +9,7 @@
     <link rel="icon" href="../../../../favicon.ico">
 
     <title><?= App::getInstance()->title; ?></title>
-
+    
     <!-- Bootstrap core CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
 
@@ -18,7 +18,7 @@
 <body>
 
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-        <a class="navbar-brand" href="#">Jean Forteroche</a>
+        <a class="navbar-brand" href="http://localhost:8888/public/index.php?p=jean_forteroche">Jean Forteroche</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -26,22 +26,15 @@
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Blog <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="http://localhost:8888/public/index.php">Blog <span class="sr-only">(current)</span></a>
                 </li>
                 <!-- <li class="nav-item">
             <a class="nav-link" href="#">Tous les chapitres</a>
           </li>-->
 
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Tous les chapitres</a>
-                    <div class="dropdown-menu" aria-labelledby="dropdown01">
-                        <a class="dropdown-item" href="#">Chapitre 1</a>
-                        <a class="dropdown-item" href="#">Chapitre 2</a>
-                        <a class="dropdown-item" href="#">Chapitre 3</a>
-                        <a class="dropdown-item" href="#">Chapitre 4</a>
-                        <a class="dropdown-item" href="#">Chapitre 5</a>
-                        <a class="dropdown-item" href="#">Chapitre 6</a>
-                    </div>
+                    <a class="nav-link" href="http://localhost:8888/public/index.php?p=chapitres.list#">Tous les chapitres</a>
+                    
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">

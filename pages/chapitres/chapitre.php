@@ -5,7 +5,7 @@ use App\Table\Categorie;
 use App\Table\Chapitre;
 
 
-$chapitre = Chapitre:: find($_GET['id']);
+$chapitre = Chapitre::find($_GET['id']);
 if($chapitre ===false){
     App::notFound();
 }

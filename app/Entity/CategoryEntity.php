@@ -10,6 +10,6 @@ class CategoryEntity extends Entity{
     
     public function getUrl(){
         
-        return 'index.php?p=chapitres.category&id=' . $this->id;
+        return 'index.php?p=chapitres.categories&id=' . $this->id;
     }
 }

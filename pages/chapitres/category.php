@@ -10,10 +10,10 @@ if($categorie ===false){ //on prévoit les cas ou les catégories n'existent pas
     $app->notFound();
 }
 //on récupère les chapitres
-$articles = $app->getTable('Chapitre')->lastByCategory($_GET['id']);
+$chapitres = $app->getTable('Chapitre')->lastByCategory($_GET['id']);
 
 //récupère toutes les catégories
-$categories= $app->getTable('Category')->all();
+$categories= $app->getTable('Category')->last();
 
 ?>
 
@@ -22,7 +22,7 @@ $categories= $app->getTable('Category')->all();
 <div class="row">
     <div class="col-sm-8">
         <?php foreach($chapitres as $chapitre): ?> <!--va chercher tous les chapitres -->
-
+        
         <!-- plus besoin de se soucier d'aller chercher la base de donnée juste besoin de mettre App\App::getDb-->
 
                 <h2><a href="<?= $chapitre->url ?>"><?= $chapitre->titre; ?></a></h2>
@@ -36,6 +36,7 @@ $categories= $app->getTable('Category')->all();
      <div class="col-sm-4">
         <ul>
         <?php foreach($categories as $category): ?> 
+           
             <li><a href="<?= $category->url; ?>"><?= $category->titre; ?></a></li>
         <?php endforeach; ?>
         </ul>

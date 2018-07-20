@@ -1,7 +1,7 @@
 <?php
 
 $app = App::getInstance();
-$chapitre = $app->getTable('Chapitre')->find($_GET['id']);
+$chapitre = $app->getTable('Chapitre')->findWidthCategory($_GET['id']);
 
 if($chapitre === false){
     $app->notFound();
