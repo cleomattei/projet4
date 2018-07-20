@@ -30,17 +30,30 @@ ob_start();
 if($page === 'home'){
     require ROOT . '/pages/admin/home.php';
     
+}else if ($page === 'chapitres.index'){
+    require ROOT . '/pages/admin/chapitres/index.php';
+    
 }else if ($page === 'chapitres.edit'){
     require ROOT . '/pages/admin/chapitres/edit.php';
-    
-}else if ($page === 'chapitres.show'){
-    require ROOT . '/pages/admin/chapitres/show.php';
     
 }else if ($page === 'chapitres.add'){
     require ROOT . '/pages/admin/chapitres/add.php';
     
 }else if ($page === 'chapitres.delete'){
     require ROOT . '/pages/admin/chapitres/delete.php';
+    
+    
+}else if($page === 'categories.index'){
+    require ROOT . '/pages/admin/categories/index.php';
+    
+}else if ($page === 'categories.edit'){
+    require ROOT . '/pages/admin/categories/edit.php';
+    
+}else if ($page === 'categories.add'){
+    require ROOT . '/pages/admin/categories/add.php';
+    
+}else if ($page === 'categories.delete'){
+    require ROOT . '/pages/admin/categories/delete.php';
 }
 
 $content = ob_get_clean();

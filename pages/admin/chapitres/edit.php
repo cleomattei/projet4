@@ -9,7 +9,9 @@ if(!empty($_POST)){
         'category_id' => $_POST['category_id']
     ]);
     if($result){
-        header('Location: admin.php?p=chapitres.edit&id=' . App::getInstance()->getDb()->lastInsertId());
+?>
+       <div class="alert alert-success">Le chapitre a bien été modifié</div>
+       <?php
     }
 }
 $chapitre = $postTable->find($_GET['id']);
