@@ -1,11 +1,12 @@
 <?php
 
-$chapitres = App::getInstance()->getTable('Chapitre')->all();
+$chapitres = App::getInstance()->getTable('Chapitre')->allById();
 $categories = App::getInstance()->getTable('Category')->all();
 $commentaires = App::getInstance()->getTable('Commentaire')->all();
 
 ?>
 <h1>Administration</h1>
+<!-- ADMINISTRER LES CHAPITRES__________________________________________________________________________________________________________________________________________________________________ -->
 <h2>Administrer les chapitres</h2>
 
 <p>
@@ -27,7 +28,9 @@ $commentaires = App::getInstance()->getTable('Commentaire')->all();
     </thead>
 
     <tbody>
-        <?php foreach($chapitres as $chapitre): ?> <!-- on recherche tous les chapitres -->
+        <?php foreach($chapitres as $chapitre): ?><!-- on recherche tous les chapitres -->
+            <?php if($chapitre->categorie_id == 1) { ?>
+        
             <tr>
                 
                 <td><?= $chapitre->id; ?></td>
@@ -41,12 +44,57 @@ $commentaires = App::getInstance()->getTable('Commentaire')->all();
                 </td>
                 
             </tr>
+            <?php } ?>
         <?php endforeach; ?>
 
     </tbody>
 
 </table>
 
+ <!-- ADMINISTER LES MESSAGES DE LAUTEUR  __________________________________________________________________________________________________________________________________________________________________ -->
+<h2>Administrer les annonces</h2>
+
+<p>
+    <a href="?p=chapitres.add" class="btn btn-success">Ajouter</a>
+</p>
+
+<table class="table">
+    
+    <thead>
+        
+        <tr>
+            
+            <td>ID</td>
+            <td>Titre</td>
+            <td>Actions</td>
+            
+        </tr> 
+        
+    </thead>
+
+    <tbody>
+        <?php foreach($chapitres as $chapitre): ?> <!-- on recherche tous les chapitres -->
+           <?php if($chapitre->categorie_id == 2) { ?>
+            <tr>
+                
+                <td><?= $chapitre->id; ?></td>
+                <td><?= $chapitre->titre; ?></td>
+                <td>
+                    <a class="btn btn-primary" href="?p=chapitres.edit&id=<?= $chapitre->id; ?>">Editer</a>
+                     <form action="?p=chapitres.delete" method="post" style="display: inline"> <!-- formulaire pour empêcher de supp par erreur dans l'url -->
+                        <input type="hidden" name="id" value="<?= $chapitre->id ?>">
+                        <button type="submit" class="btn btn-danger" href="?p=chapitres.delete&id=<?= $chapitre->id; ?>">Supprimer</button>
+                    </form>
+                </td>
+                
+            </tr>
+            <?php } ?>
+        <?php endforeach; ?>
+
+    </tbody>
+
+</table>
+<!-- ADMINISTER LES CATEGORIES __________________________________________________________________________________________________________________________________________________________________ -->
 <h2>Administrer les catégories</h2>
 
 

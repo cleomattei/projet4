@@ -16,12 +16,26 @@ class ChapitreTable extends Table{
     
     public function last (){
         return $this->query("
-            SELECT chapitres.id, chapitres.titre, chapitres.contenu, chapitres.date_creation, categories.titre as categorie 
+            SELECT chapitres.id, chapitres.titre, chapitres.contenu, chapitres.date_creation, categories.titre as categorie
             FROM chapitres
             LEFT JOIN categories ON category_id = categories.id
             WHERE categories.id = 1
             ORDER BY chapitres.date_creation ASC");
     }
+    
+        /**
+    * Récupère les derniers chapitres 
+    * @return array
+    */
+    
+    public function allById (){
+        return $this->query("
+            SELECT chapitres.id, chapitres.titre, chapitres.contenu, chapitres.date_creation, categories.titre as categorie, categories.id as categorie_id 
+            FROM chapitres
+            LEFT JOIN categories ON category_id = categories.id
+            ORDER BY chapitres.date_creation DESC");
+    }
+    
     /** Récupère les derniers chapitres de la categories 
     *@param $category_id int
     *@return array

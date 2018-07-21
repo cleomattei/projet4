@@ -12,13 +12,14 @@
     
     <!-- Bootstrap core CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
-
+    <!-- Feuille de style CSS -->
+    <link rel="stylesheet" href="/oc/projet4/public/css/style.css">
 </head>
 
 <body>
 
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-        <a class="navbar-brand" href="http://localhost:8888/public/index.php?p=jean_forteroche">Jean Forteroche</a>
+        <a class="navbar-brand" href="http://www.cleomattei.com/oc/projet4/public/index.php?p=jean_forteroche">Jean Forteroche</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -26,21 +27,39 @@
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="http://localhost:8888/public/index.php">Blog <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="http://www.cleomattei.com/oc/projet4/public/index.php">Blog <span class="sr-only">(current)</span></a>
                 </li>
                 <!-- <li class="nav-item">
             <a class="nav-link" href="#">Tous les chapitres</a>
           </li>-->
 
                 <li class="nav-item dropdown">
-                    <a class="nav-link" href="http://localhost:8888/public/index.php?p=chapitres.list#">Tous les chapitres</a>
+                    <a class="nav-link" href="http://www.cleomattei.com/oc/projet4/public/index.php?p=chapitres.list#">Tous les chapitres</a>
                     
                 </li>
             </ul>
+            
+            <?php if(\Core\Auth\DBAuth::logged()){ ?>
+           
+             <form action="admin.php" method="post" class="form-inline my-2 my-lg-0">
+                
+                <button class="btn btn-primary my-2 my-sm-0" type="submit" >Administration</button>
+            </form>
+            
+            
+             <form action="admin.php?p=logout" method="post" class="form-inline my-2 my-lg-0">
+                
+                <button id="bouton-delog"class="btn btn-danger my-2 my-sm-0" type="submit" >Se déconnecter</button>
+            </form>
+<?php
+}else{
+    
+?>
             <form action="?p=login" method="post" class="form-inline my-2 my-lg-0">
                 
                 <button class="btn btn-primary my-2 my-sm-0" type="submit" >Se connecter</button>
             </form>
+  <?php }  ?>
         </div>
     </nav>
 
@@ -63,7 +82,7 @@
     <script src="https://getbootstrap.com/docs/4.1/assets/js/vendor/popper.min.js"></script>
     <script src="https://getbootstrap.com/docs/4.1/dist/js/bootstrap.min.js"></script>
     <!-- CDN TINYMCE -->
-    <script src="/public/js/tinymce/tinymce.min.js"></script>
+    <script src="/oc/projet4/public/js/tinymce/tinymce.min.js"></script>
     <script>
     tinymce.init({
         selector: 'textarea',

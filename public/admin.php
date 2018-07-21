@@ -61,6 +61,12 @@ if($page === 'home'){
     
 }else if ($page === 'commentaires.delete'){
     require ROOT . '/pages/admin/commentaires/delete.php';
+    
+}else if ($page === 'login'){
+header('Location: admin.php');
+    
+}else if ($page === 'logout'){
+require ROOT . '/pages/admin/logout.php';
 }
 
 $content = ob_get_clean();

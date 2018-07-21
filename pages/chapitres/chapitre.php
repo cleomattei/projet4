@@ -14,6 +14,6 @@ App::setTitle($chapitre->titre);
     
 ?>
 
-<h1><?= $chapitre->titre; ?></h1>
+<h2><?= $chapitre->titre; ?></h2>
 
 <p><?= $chapitre->contenu; ?></p>

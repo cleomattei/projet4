@@ -6,7 +6,7 @@
 
         <!-- plus besoin de se soucier d'aller chercher la base de donnée juste besoin de mettre App\App::getDb-->
 
-                <h2><a href="<?= $chapitre->url ?>"><?= $chapitre->titre; ?></a></h2>
+                <h2><a  class="<?= $chapitre->categorie;?>" href="<?= $chapitre->url ?>"><?= $chapitre->titre; ?></a></h2>
 
                 <p><?= $chapitre->getExtrait(); ?></p>
 

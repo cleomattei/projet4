@@ -17,7 +17,7 @@ class ChapitreEntity extends Entity{
             $lenght = 350;
         }
         $html = '<p>' . substr($this->contenu, 0, $lenght) . '...</p>'; //substr = nombre de caractères à afficher
-        $html .= '<p><a href="' . $this->getUrl() . '">Voir la suite</a></p>';
+        $html .= '<p><em><a href="' . $this->getUrl() . '">Voir la suite</a></em></p>';
         return $html;
     }
 }

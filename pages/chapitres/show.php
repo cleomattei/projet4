@@ -17,7 +17,7 @@ $app->title = $chapitre->titre;
 ?>
 
 
-<h1><?= $chapitre->titre; ?></h1>
+<h2><?= $chapitre->titre; ?></h2>
 
 
 <p><em><?= $chapitre->categorie; ?></em></p>
@@ -58,7 +58,7 @@ if(!empty($_POST)){
     }
     else if($_POST['form'] == 2) {
         $result = $commentaireTable->create([ 
-            'pseudo' => $_POST['pseudo'],
+            'pseudo' => htmlspecialchars($_POST['pseudo']),
             'date_creation' => date("Y-m-d H:i:s"),
             'chapitre_id' => $chapitre->id,
             'contenu' => $_POST['contenu']
@@ -78,7 +78,7 @@ AFFICHAGE DES COMMENTAIRES
 __________________________________________________________________________________________________________________________________________________________________ */
 $commentaires = $commentaireTable->last($chapitre->id);
 ?>
-<h2>Commentaires</h2>
+<h3>Commentaires</h3>
 
 <?php foreach($commentaires as $commentaire): ?> <!-- on recherche tous les chapitres -->
 
@@ -106,7 +106,7 @@ $form = new \Core\HTML\BootstrapForm($_POST);//on récupère le chapitre en para
 
 ?>
 
-<h2>Ajouter un commentaire</h2>
+<h4>Ajouter un commentaire</h4>
 <form method="post">
    <input type="hidden" name="form" value="2">
     <?= $form->input('pseudo','Pseudo'); ?>

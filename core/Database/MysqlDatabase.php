@@ -16,7 +16,7 @@ class MysqlDatabase extends Database{
     private $db_host;
     private $pdo;
     
-    public function __construct($db_name, $db_user = 'root', $db_pass = 'root', $db_host ='localhost'){
+    public function __construct($db_name, $db_user = 'livre_jf', $db_pass = '8f6qGQi5', $db_host ='localhost'){
         $this->db_name =$db_name;
         $this->db_user =$db_user;
         $this->db_pass =$db_name;
@@ -25,7 +25,7 @@ class MysqlDatabase extends Database{
     
     private function getPDO(){// au cas ou le pdo tombe en panne
         if($this->pdo === NULL) {
-            $pdo = new PDO('mysql:dbname=Livre_Jean_Forteroche;host=localhost', 'root', 'root');
+            $pdo = new PDO('mysql:dbname=livre_jf;host=localhost', 'livre_jf', '8f6qGQi5', array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $this->pdo =$pdo;
         }

@@ -6,8 +6,8 @@ TABLEAU DE LA CONFIGURATION DE LA BASE DE DONNEE
 __________________________________________________________________________________________________________________________________________________________________ */
 return array(
     
-    "db_user" => "root",
-    "db_pass" => "root",
+    "db_user" => "livre_jf",
+    "db_pass" => "8f6qGQi5",
     "db_host" => "localhost",
-    "db_name" => "Livre_Jean_Forteroche"
+    "db_name" => "livre_jf"
 );

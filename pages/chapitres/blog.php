@@ -10,7 +10,7 @@ $app->title = 'blog';
 <div class="row">
     <div class="col-sm-8">
         <?php foreach($chapitres as $chapitre):?>
-            <h1><?= $chapitre->titre; ?></h1>
+        <h2><a  class="<?= $chapitre->categorie;?>" href="<?= $chapitre->url ?>"><?= $chapitre->titre; ?></a></h2>
 
 
             <p><em><?= $chapitre->categorie; ?></em></p>
