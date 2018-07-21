@@ -88,6 +88,6 @@ class MysqlDatabase extends Database{
     
     // retourne l'id du dernier enregistrement
     public function lastInsertId(){
-        return $this->getPDO()->getPDO()->lastInsertId();
+        return $this->getPDO()->lastInsertId();
     }
 }

@@ -37,9 +37,9 @@
                     
                 </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            <form action="?p=login" method="post" class="form-inline my-2 my-lg-0">
+                
+                <button class="btn btn-primary my-2 my-sm-0" type="submit" >Se connecter</button>
             </form>
         </div>
     </nav>
@@ -62,6 +62,15 @@
     </script>
     <script src="https://getbootstrap.com/docs/4.1/assets/js/vendor/popper.min.js"></script>
     <script src="https://getbootstrap.com/docs/4.1/dist/js/bootstrap.min.js"></script>
+    <!-- CDN TINYMCE -->
+    <script src="/public/js/tinymce/tinymce.min.js"></script>
+    <script>
+    tinymce.init({
+        selector: 'textarea',
+        language: 'fr_FR'
+    });
+
+    </script>
 </body>
 
 </html>

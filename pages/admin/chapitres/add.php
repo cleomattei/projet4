@@ -19,13 +19,12 @@ $form = new \Core\HTML\BootstrapForm($_POST);//on récupère le chapitre en para
 
 ?>
 
-<form method="post">
-   
-    <?= $form->input('titre','Titre du chapitre'); ?>
-    <?= $form->input('contenu', 'Contenu', ['type' => 'textarea']); ?>
-    <?= $form->select('category_id', 'Catégorie', $categories); ?>
-    
-    <button class="btn btn-primary">Sauvegarder</button>
-    
-</form>
+    <form method="post">
 
+        <?= $form->input('titre','Titre du chapitre'); ?>
+            <?= $form->input('contenu', 'Contenu', ['type' => 'textarea']); ?>
+                <?= $form->select('category_id', 'Catégorie', $categories); ?>
+
+                    <button class="btn btn-primary">Sauvegarder</button>
+
+    </form>

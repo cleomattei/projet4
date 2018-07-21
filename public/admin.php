@@ -54,6 +54,13 @@ if($page === 'home'){
     
 }else if ($page === 'categories.delete'){
     require ROOT . '/pages/admin/categories/delete.php';
+
+
+}else if($page === 'commentaires.index'){
+    require ROOT . '/pages/admin/commentaires/index.php';   
+    
+}else if ($page === 'commentaires.delete'){
+    require ROOT . '/pages/admin/commentaires/delete.php';
 }
 
 $content = ob_get_clean();

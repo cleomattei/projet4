@@ -33,6 +33,9 @@ if($page === 'blog'){
     require ROOT . '/pages/users/login.php';
 }
 
+else if ($page === 'commentaires.report'){
+    require ROOT . '/pages/admin/commentaires/report.php';
+}
 
 $content = ob_get_clean();
 require ROOT . '/pages/templates/default.php';
