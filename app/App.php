@@ -24,6 +24,7 @@ class App {
         return self::$_instance;
     }
     
+    //récupère toutes les classes d'app et core
     public static function load(){
         session_start();
         require ROOT .'/app/Autoloader.php';
@@ -35,7 +36,7 @@ class App {
     //elle créer un objet de la classe passée en parametre
     public function getTable($name){
         
-        $class_name = '\\App\\Table\\' . ucfirst($name) . 'Table';
+        $class_name = '\\App\\Table\\' . ucfirst($name) . 'Table'; //ucfirst met la première lettre en maj
         return new $class_name($this->getDb());
     }
     

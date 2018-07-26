@@ -31,7 +31,7 @@ class Table {
         return $this->query("SELECT * FROM {$this->table} WHERE id =?", [$id], true);
     }
     
-     //création de la fonction find trouve un seul élément
+     //mettre a jour un objet
     public function update($id, $fields){
         $sql_parts = [];
         $attributes = [];
